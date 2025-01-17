@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta & responsive -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Smart Wardrobe</title>
+    
     <style>
+        /* Reset & font */
         * {
             margin: 0;
             padding: 0;
@@ -12,16 +15,19 @@
             font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
+        /* Page background */
         body {
             background: #f5f5f5;
         }
 
+        /* Centered container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
 
+        /* Header styling */
         .header {
             background: white;
             padding: 20px;
@@ -29,11 +35,13 @@
             margin-bottom: 30px;
         }
 
+        /* Nav bar */
         .nav {
             display: flex;
             gap: 20px;
         }
 
+        /* Nav buttons */
         .nav-button {
             padding: 10px 20px;
             font-size: 16px;
@@ -44,11 +52,13 @@
             border-bottom: 2px solid transparent;
         }
 
+        /* Active nav button */
         .nav-button.active {
             color: #2563eb;
             border-bottom: 2px solid #2563eb;
         }
 
+        /* Wardrobe grid layout */
         .wardrobe-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -56,6 +66,7 @@
             margin-top: 20px;
         }
 
+        /* Clothing card */
         .clothing-item {
             background: white;
             border-radius: 8px;
@@ -63,26 +74,31 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
+        /* Clothing image */
         .clothing-item img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
 
+        /* Clothing details */
         .clothing-item-details {
             padding: 15px;
         }
 
+        /* Clothing name */
         .clothing-item-name {
             font-weight: 600;
             margin-bottom: 5px;
         }
 
+        /* Clothing category */
         .clothing-item-category {
             color: #666;
             font-size: 14px;
         }
 
+        /* Tag label */
         .tag {
             display: inline-block;
             padding: 4px 8px;
@@ -93,6 +109,7 @@
             margin-top: 5px;
         }
 
+        /* Upload area box */
         .upload-area {
             border: 2px dashed #ccc;
             border-radius: 8px;
@@ -103,16 +120,19 @@
             cursor: pointer;
         }
 
+        /* Hover on upload area */
         .upload-area:hover {
             border-color: #2563eb;
         }
 
+        /* Upload icon style */
         .upload-icon {
             font-size: 40px;
             color: #ccc;
             margin-bottom: 10px;
         }
 
+        /* Outfit card */
         .outfit-card {
             background: white;
             border-radius: 8px;
@@ -121,6 +141,7 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
+        /* Outfit card header */
         .outfit-header {
             display: flex;
             justify-content: space-between;
@@ -128,16 +149,19 @@
             margin-bottom: 15px;
         }
 
+        /* Outfit title */
         .outfit-title {
             font-size: 18px;
             font-weight: 600;
         }
 
+        /* Outfit details text */
         .outfit-details {
             color: #666;
             font-size: 14px;
         }
 
+        /* Outfit items grid */
         .outfit-items {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -145,6 +169,7 @@
             margin-top: 15px;
         }
 
+        /* Single outfit item */
         .outfit-item {
             background: #f5f5f5;
             border-radius: 4px;
@@ -152,11 +177,13 @@
             text-align: center;
         }
 
+        /* Star rating style */
         .star-rating {
             color: #fbbf24;
             font-size: 20px;
         }
 
+        /* General button */
         .button {
             padding: 8px 16px;
             background: #2563eb;
@@ -166,10 +193,12 @@
             cursor: pointer;
         }
 
+        /* Button hover */
         .button:hover {
             background: #1d4ed8;
         }
 
+        /* Calendar container */
         .calendar-container {
             background: white;
             border-radius: 8px;
@@ -177,6 +206,7 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
+        /* Calendar header */
         .calendar-header {
             display: flex;
             justify-content: space-between;
@@ -184,12 +214,14 @@
             margin-bottom: 20px;
         }
 
+        /* Main calendar grid (days) */
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 8px;
         }
 
+        /* Day-of-week header */
         .calendar-day-header {
             text-align: center;
             font-weight: 600;
@@ -197,6 +229,7 @@
             padding: 10px;
         }
 
+        /* Single day cell */
         .calendar-day {
             aspect-ratio: 1;
             border: 1px solid #e5e7eb;
@@ -206,24 +239,29 @@
             position: relative;
         }
 
+        /* Hover day cell */
         .calendar-day:hover {
             background: #f5f5f5;
         }
 
+        /* Day with outfit scheduled */
         .calendar-day.has-outfit {
             background: #e8f0fe;
             border-color: #2563eb;
         }
 
+        /* Selected day */
         .calendar-day.selected {
             background: #2563eb;
             color: white;
         }
 
+        /* Day number text */
         .calendar-day-number {
             font-weight: 500;
         }
 
+        /* Small dot for outfit indicator */
         .outfit-dot {
             width: 6px;
             height: 6px;
@@ -235,6 +273,7 @@
             transform: translateX(-50%);
         }
 
+        /* Day outfits preview */
         .day-outfits-preview {
             margin-top: 20px;
             background: white;
@@ -243,6 +282,7 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
+        /* Selected date title */
         .selected-date {
             font-size: 18px;
             font-weight: 600;
@@ -251,6 +291,7 @@
     </style>
 </head>
 <body>
+    <!-- Header & nav -->
     <div class="header">
         <div class="container">
             <div class="nav">
@@ -261,9 +302,11 @@
         </div>
     </div>
 
+    <!-- Main container -->
     <div class="container">
         <!-- Wardrobe Section -->
         <div id="wardrobe-section">
+            <!-- Upload area -->
             <div class="upload-area" onclick="document.getElementById('file-upload').click()">
                 <div class="upload-icon">📤</div>
                 <div>Click to add clothes to your wardrobe</div>
@@ -271,8 +314,8 @@
             </div>
             <input type="file" id="file-upload" style="display: none" accept="image/*">
 
+            <!-- Wardrobe items -->
             <div class="wardrobe-grid">
-                <!-- Example clothing items -->
                 <div class="clothing-item">
                     <img src="/api/placeholder/200/200" alt="Blue Oxford Shirt">
                     <div class="clothing-item-details">
@@ -355,6 +398,7 @@
         <!-- Calendar Section -->
         <div id="calendar-section" style="display: none">
             <div class="calendar-container">
+                <!-- Calendar header -->
                 <div class="calendar-header">
                     <button class="button" onclick="previousMonth()">&lt; Previous</button>
                     <h2 id="current-month">January 2025</h2>
@@ -370,10 +414,11 @@
                     <div class="calendar-day-header">Sat</div>
                 </div>
                 <div id="calendar-days" class="calendar-grid">
-                    <!-- Calendar days will be inserted here by JavaScript -->
+                    <!-- Days inserted by JS -->
                 </div>
             </div>
 
+            <!-- Day outfits preview -->
             <div id="day-outfits" class="day-outfits-preview" style="display: none">
                 <div class="selected-date">January 17, 2025</div>
                 <div class="outfit-card">
@@ -403,7 +448,9 @@
         </div>
     </div>
 
-    <script
+    <!-- JS placeholder -->
+    <script>
+    // Placeholder for functions like showWardrobe, showOutfits, showCalendar, etc.
     </script>
 </body>
 </html>
