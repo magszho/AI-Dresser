@@ -448,9 +448,43 @@
         </div>
     </div>
 
-    <!-- JS placeholder -->
+    <!-- JS to toggle sections & handle calendar nav -->
     <script>
-    // Placeholder for functions like showWardrobe, showOutfits, showCalendar, etc.
+      function showWardrobe() {
+        document.getElementById('wardrobe-section').style.display = 'block';
+        document.getElementById('outfits-section').style.display = 'none';
+        document.getElementById('calendar-section').style.display = 'none';
+
+        document.querySelector('.nav-button.active').classList.remove('active');
+        document.querySelector('.nav-button[onclick="showWardrobe()"]').classList.add('active');
+      }
+
+      function showOutfits() {
+        document.getElementById('wardrobe-section').style.display = 'none';
+        document.getElementById('outfits-section').style.display = 'block';
+        document.getElementById('calendar-section').style.display = 'none';
+
+        document.querySelector('.nav-button.active').classList.remove('active');
+        document.querySelector('.nav-button[onclick="showOutfits()"]').classList.add('active');
+      }
+
+      function showCalendar() {
+        document.getElementById('wardrobe-section').style.display = 'none';
+        document.getElementById('outfits-section').style.display = 'none';
+        document.getElementById('calendar-section').style.display = 'block';
+
+        document.querySelector('.nav-button.active').classList.remove('active');
+        document.querySelector('.nav-button[onclick="showCalendar()"]').classList.add('active');
+      }
+
+      // Placeholder month nav
+      function previousMonth() {
+        alert("Previous month clicked");
+      }
+
+      function nextMonth() {
+        alert("Next month clicked");
+      }
     </script>
 </body>
 </html>
